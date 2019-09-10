@@ -21,12 +21,14 @@ class Solution:
       n -= len(leaves);
       newLeaves = []
       '''
-        Find the connected node to the leaf node, and remove the leaf.
-        And update new leaf nodes.
+        Find the parent node of the leaf node, and remove the leaf.
+        And update the new parent node.
       '''
       for leaf in leaves:
         otherNode = adj[leaf].pop()
         adj[otherNode].remove(leaf)
+        # After removing, if the parent node doesn't have any children.
+        # It becomes a new leaf.
         if len(adj[otherNode]) == 1:
           newLeaves.append(otherNode)
       leaves = newLeaves
