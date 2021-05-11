@@ -45,7 +45,7 @@ class Solution:
         for i in range(n):
             if i == index:
                 continue
-            if self.cancheKnows(index, i) or not knows(i, index):
+            if self.cacheKnows(index, i) or not self.cacheknows(i, index):
                 return False
         return True
 
