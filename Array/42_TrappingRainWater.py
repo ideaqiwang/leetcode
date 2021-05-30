@@ -10,8 +10,6 @@ Explanation: The above elevation map (black section) is represented by array [0,
 Example 2:
 Input: height = [4,2,0,3,2,5]
 Output: 9
-
-
 '''
 
 class Solution:
@@ -56,5 +54,4 @@ class Solution:
                 else:
                     total += rightMax - height[r]
                 r -= 1
-                
         return total
