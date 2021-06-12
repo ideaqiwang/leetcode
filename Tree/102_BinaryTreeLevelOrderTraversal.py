@@ -1,7 +1,7 @@
 '''
-@Description https://leetcode.com/problems/binary-tree-level-order-traversal/
-@IDEA
-  Use a queue to traverse the tree level by level
+102. Binary Tree Level Order Traversal
+
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
 '''
 
 # Definition for a binary tree node.
@@ -12,6 +12,7 @@
 #         self.right = None
 
 class Solution:
+    # Use a queue to traverse the tree level by level
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []

@@ -1,10 +1,28 @@
 '''
-  @Description https://leetcode.com/problems/longest-palindromic-substring/
-  @IDEA
-    Use two pointers to search the longest palidromic substring from middle position to left and right.
+  5. Longest Palindromic Substring
+
+  Given a string s, return the longest palindromic substring in s.
+
+  Example 1:
+  Input: s = "babad"
+  Output: "bab"
+  Note: "aba" is also a valid answer.
+  
+  Example 2:
+  Input: s = "cbbd"
+  Output: "bb"
+  
+  Example 3:
+  Input: s = "a"
+  Output: "a"
+
+  Example 4:
+  Input: s = "ac"
+  Output: "a"
 '''
 
 class Solution:
+    # Use two pointers to search the longest palidromic substring from middle position to left and right.
     start = 0 # The start index of the longest palindromic substring 
     end = 0   # The end index of the longest palindromic substring
 
@@ -22,7 +40,7 @@ class Solution:
         l -= 1
         r += 1
       # Compare the current longest palindromic string with the current substring
-      # r-l-2 is because l and r would be outside of found palindromic string
+      # r-l-2 is because l and r would be outside of the found palindromic string
       if (self.end-self.start) < (r-l-2):
         self.start = l+1
         self.end = r-1
