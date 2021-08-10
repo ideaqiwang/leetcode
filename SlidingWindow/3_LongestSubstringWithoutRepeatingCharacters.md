@@ -27,7 +27,7 @@ Output: 0
 Apply _**"Sliding Window"**_ algorithm to this question.  
 
 ```Python
-class Solution:
+class Solution1:
     def lengthOfLongestSubstring(self, s: str) -> int:
         n = len(s)
 
@@ -40,4 +40,18 @@ class Solution:
             longest = max(longest, r-l+1)
             letter2index[s[r]] = r
         return longest
+
+class Solution2:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        length = 0
+        window = set()
+        
+        l = 0
+        for r in range(len(s)):
+            while s[r] in window:
+                window.remove(s[l])
+                l += 1
+            window.add(s[r])
+            length = max(length, r-l+1)
+        return length
 ```
