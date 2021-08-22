@@ -62,8 +62,10 @@ class Solution:
             for j in range(minLen):
                 c1, c2 = words[i][j], words[i+1][j]
                 if c1 != c2:
-                        graph[c1].add(c2)
-                        break
+                    graph[c1].add(c2)
+                    break
+
+                # Check if the second word is prefix of the first word
                 if j == minLen-1 and len(words[i]) > len(words[i+1]):
                     return None
         return graph

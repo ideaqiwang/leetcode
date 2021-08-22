@@ -57,7 +57,7 @@ class Solution:
         """
         if not root:
             return
-        self.p = TreeNode()
+        p = dummy = TreeNode()
         stack = [root]
         while stack:
             node = stack.pop()
@@ -67,8 +67,8 @@ class Solution:
                 stack.append(node.left)
                 node.left = None
   
-            self.p.right = node
-            self.p = self.p.right
+            p.right = node
+            p = p.right
 
     # Solution 3 - Iterative in place
     def flatten3(self, root: TreeNode) -> None:
