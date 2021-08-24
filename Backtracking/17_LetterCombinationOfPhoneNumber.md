@@ -1,5 +1,6 @@
-'''
-17. Letter Combinations of Phone Number
+## 17. Letter Combinations of Phone Number
+
+### Description
 
 Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
 
@@ -10,8 +11,12 @@ Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 Example 2:
 Input: digits = ""
 Output: []
-'''
 
+### Solution
+* Backtracking
+* Time Complexity: O(4^N * N)
+
+```python
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         if not digits:
@@ -34,3 +39,4 @@ class Solution:
             path.append(letter)
             self.dfs(digits, index+1, path, combs)
             path.pop()
+```
