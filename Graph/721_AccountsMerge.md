@@ -17,6 +17,7 @@ We could return these lists in any order, for example the answer [['Mary', 'mary
 ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
 
 ### Solution
+#### - Solution 1
 * Build a graph - emailA : [name, emailB]
 * BFS
 
@@ -61,4 +62,55 @@ class Solution:
                     graph[account[i]].append(account[j])
                     graph[account[j]].append(account[i])
         return graph
+```
+
+#### - Solution 2
+* Union Find
+* Time Complexity: O(N) N is the sume of the length of accounts[i]
+
+```python
+class UnionFind:
+    def __init__(self, n):
+        self.parents = [*range(n+1)]
+        self.ranks = [0] * (n+1)
+    
+    def find(self, node):
+        if self.parents[node] != node:
+            self.parents[node] = self.find(self.parents[node])
+        return self.parents[node]
+    
+    def union(self, x, y):
+        px, py = self.find(x), self.find(y)
+        if self.ranks[px] < self.ranks[py]:
+            self.parents[px] = py
+        elif self.ranks[px] > self.ranks[py]:
+            self.parents[py] = px
+        else:
+            self.parents[px] = py
+            self.ranks[py] += 1
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        m = len(accounts)
+        email2name = {}
+        email2index = {}
+        n = 0 
+        for account in accounts:
+            n = max(n, len(account))
+            name = account[0]
+            for i in range(1, len(account)):
+                if account[i] not in email2index:
+                    email2name[account[i]] = name
+                    email2index[account[i]] = len(email2index)
+        
+        uf = UnionFind(m*n)
+        for account in accounts:
+            for i in range(1, len(account)-1):
+                uf.union(email2index[account[i]], email2index[account[i+1]])
+        
+        idx2emails = defaultdict(list)
+        for email in email2index:
+            idx2emails[uf.find(email2index[email])].append(email)
+        
+        return [ [email2name[emails[0]]] + sorted(emails) for emails in idx2emails.values()]
 ```

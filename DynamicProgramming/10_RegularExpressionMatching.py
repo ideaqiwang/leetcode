@@ -52,7 +52,7 @@ class Solution:
                     dp[i][j] = dp[i][j-2] # 'a*' counts as empty
                     if s[i-1] == p[j-2] or p[j-2] == ".":
                         # dp[i][j-1] => 'a*' counts as single a
-                        # dp[i-1][j] => 'a* counts as multile a
+                        # dp[i-1][j] => 'a* counts as multiple a
                         # dp[i][j-2] => 'a*' counts as empty
                         dp[i][j] = dp[i][j] or dp[i-1][j]
                 else:
