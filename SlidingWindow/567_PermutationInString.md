@@ -24,27 +24,21 @@ Output: false
 ```python
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        dict1 = Counter(s1)
+        dict1 = defaultdict(int)
+        for c in s1:
+            dict1[c] += 1
         window_dict = defaultdict(int)
         
         m, n = len(s1), len(s2)
-        matched = 0
         for r in range(n):
-            c_r = s2[r]
-            window_dict[c_r] += 1
-            if c_r in dict1 and dict1[c_r] == window_dict[c_r]:
-                matched += 1
-        
+            window_dict[s2[r]] += 1
+            
             if r+1 >= m:
-                if matched == len(dict1):
+                if dict1 == window_dict:
                     return True
                 l = r-m+1
-                c_l = s2[l]
-                window_dict[c_l] -= 1
-                if window_dict[c_l] == 0:
-                    del window_dict[c_l]
-                    if c_l in dict1:
-                        matched -= 1
-                
+                window_dict[s2[l]] -= 1
+                if window_dict[s2[l]] == 0:
+                    del window_dict[s2[l]]
         return False
 ```
