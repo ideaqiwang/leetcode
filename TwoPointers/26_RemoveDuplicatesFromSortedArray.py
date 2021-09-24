@@ -23,13 +23,9 @@ class Solution:
     4. Repeat the process unitil fast reaches the end of array.
     '''
     def removeDuplicates(self, nums: List[int]) -> int:
-        length = len(nums)
-        if length < 2:
-            return length
-        
-        slow = 0
-        for fast in range(1, length):
-            if nums[slow] != nums[fast]:
-                slow += 1
-                nums[slow] = nums[fast]
-        return slow
+        s = 0
+        for f in range(1, len(nums)):
+            if nums[s] != nums[f]:
+                s += 1
+                nums[s] = nums[f]
+        return s + 1

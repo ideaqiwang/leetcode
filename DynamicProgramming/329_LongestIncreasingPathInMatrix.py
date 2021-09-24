@@ -36,7 +36,6 @@ class Solution:
         
         memo[(i, j)] = longest
         return longest
-        
-        
+   
     def isValid(self, matrix, x, y):
         return 0<=x<len(matrix) and 0<=y<len(matrix[0])

@@ -58,14 +58,12 @@ class Solution:
                     graph[c] = set()
     
         for i in range(len(words)-1):
-            minLen = min(len(words[i]), len(words[i+1]))
-            for j in range(minLen):
+            l1, l2 = len(words[i]), len(words[i+1])
+            for j in range(l1):
+                if j == l2:
+                    return None
                 c1, c2 = words[i][j], words[i+1][j]
                 if c1 != c2:
                     graph[c1].add(c2)
                     break
-
-                # Check if the second word is prefix of the first word
-                if j == minLen-1 and len(words[i]) > len(words[i+1]):
-                    return None
         return graph
